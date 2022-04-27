@@ -5,7 +5,17 @@ let server = http.createServer((req, res)=>{
     console.log('URL:', req.url);
     console.log('METHOD:', req.method);
 
-    res.end('OK');
+    switch (req.url) {
+
+        case '/': 
+
+        res.setHeader('Content-Type', 'text/html');
+        res.end('<h1>Hello</h1>');
+
+        break;
+
+
+    }
 
 });
 
