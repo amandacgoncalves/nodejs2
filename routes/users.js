@@ -13,19 +13,27 @@ module.exports = (app)=>{
 
 app.get('/users', (req, res)=> {
 
+    db.find({}).sort({name:1}).exec((err, users)=>{
 
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'application/json');
-    res.json({
-        users:[{
-            name: 'Example',
-            email: 'example@example.com',
-            id: 1
-        }]
+        if (err){
+            console.log(`error: ${err}`);
+            res.status(400).json({
+                error:err
+            });
+        } else {
+
+            res.statusCode = 200;
+            res.setHeader('Content-Type', 'application/json');
+            res.json({
+                users
+        
+            }); 
+            
+        }
 
     });
 
-});
+    });
 
 app.post('/users', (req, res)=>{
 
